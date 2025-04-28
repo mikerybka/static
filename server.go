@@ -14,7 +14,7 @@ type Server struct {
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	path := filepath.Join(s.Dir, r.URL.Path)
+	path := filepath.Join(s.Dir, r.Host, r.URL.Path)
 	fi, err := os.Stat(path)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
